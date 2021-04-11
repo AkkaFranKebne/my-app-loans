@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 const testReducer = (state = [], action: any) => {
     switch(action.type) {
         case "ADD_TEST":
-            return [...state, {test: action.payload}]
+            return action.payload
         default: return state
     }
 }

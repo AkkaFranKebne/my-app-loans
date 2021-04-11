@@ -1,12 +1,22 @@
 import React, { FunctionComponent } from 'react';
+import { NavLink } from 'react-router-dom';
 
-type LinkProps = JSX.IntrinsicElements['a'];
+interface OwnProps {
+  href: string;
+}
+
+type LinkProps = JSX.IntrinsicElements['a'] & OwnProps;
 
 const Link: FunctionComponent<LinkProps> = props => {
-  const { className, ...rest } = props;
+  const { className, children, href } = props;
 
   return (
-    <a className={className} {...rest} />
+    <NavLink
+    to={href}
+    activeClassName={className}
+  >
+    {children}
+  </NavLink>
   );
 };
 

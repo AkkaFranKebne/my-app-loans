@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
+import { Link } from '../components/elements';
 import {connect} from 'react-redux';
 import { addTest } from '../redux/actions';
 
@@ -17,7 +18,9 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
+    //Redux
     props.addTest(value);
+    //state
     setValue('');
   }
 
@@ -31,6 +34,7 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
           />
           <input type="submit"/>
         </form>
+        <Link href='/contact'>contact us</Link>
       </div>
   );
 };

@@ -3,12 +3,14 @@ import styles from './Header.module.scss';
 import { connect } from 'react-redux';
 import cx from 'clsx';
 
-interface OwnProps {}
+interface OwnProps {
+  test: any;
+}
 
 type HeaderProps = Omit<JSX.IntrinsicElements['header'], 'children'> & OwnProps;
 
 const Header: FunctionComponent<HeaderProps> = props => {
-  const { className, ...rest } = props;
+  const { test, className, ...rest } = props;
   const headerClassName = cx({
     [styles.header]: true,
     ...(className && { [className]: true }),
@@ -16,7 +18,7 @@ const Header: FunctionComponent<HeaderProps> = props => {
 
   return (
     <header className={headerClassName} {...rest}> 
-      Header here..
+      Header here: {test}
     </header>
   );
 };
