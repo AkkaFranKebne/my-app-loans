@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import './styles/global.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import data from './redux/store';
+
+const { store, persistor } = data;
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* // to keep data in redux store */}
     <Provider store={store}>
-      <App />
+      {/* // to keep data in local storage */}
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
