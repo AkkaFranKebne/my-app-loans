@@ -9,8 +9,9 @@ type ContactPageProps = Omit<JSX.IntrinsicElements['article'], 'children'> & Own
 
 const ContactPage: FunctionComponent<ContactPageProps> = props => {
   const { test } = props;
+  console.log('test', test)
   return (
-      <div>I am contact page: {test}</div>
+      <div>I am contact page</div>
   );
 };
 
