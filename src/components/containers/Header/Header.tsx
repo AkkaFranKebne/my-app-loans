@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styles from './Header.module.scss';
+import { connect } from 'react-redux';
 import cx from 'clsx';
 
 interface OwnProps {}
@@ -20,4 +21,10 @@ const Header: FunctionComponent<HeaderProps> = props => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state: any) => {
+  return {
+    test: state.test
+  }
+}
+
+export default connect(mapStateToProps)(Header);
