@@ -4,6 +4,7 @@ import { addTest } from '../../../redux/actions';
 
 interface OwnProps {
   addTest: any;
+  data: any [];
 }
 
 type FormProps = JSX.IntrinsicElements['form'] & OwnProps;
@@ -14,7 +15,14 @@ const Form: FunctionComponent<FormProps> = props => {
   const [fee, setFee] = useState('');
   const [APR, setApr] = useState('');
 
-  const fullData: any[] = [];
+  // to do - not working properly
+//   //Redux
+//   const { data } = props;
+
+//   // local copy of redux data
+//   const fullData: any[] = data || [];
+
+const fullData: any[] = [];
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
@@ -30,7 +38,7 @@ const Form: FunctionComponent<FormProps> = props => {
     setLoan('');
     setFee('');
     setApr('');
-    //Redux
+    //update Redux
     props.addTest(fullData);
   }
 

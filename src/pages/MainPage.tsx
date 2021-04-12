@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from '../components/elements';
-import { Form } from '../components/containers';
+import { Form, Table } from '../components/containers';
 import { connect } from 'react-redux';
 
 interface OwnProps {
@@ -15,7 +15,8 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
 
   return (
       <div>
-        <Form />
+        <Form data={test}/>
+        <Table data={test}/>
         <Link href='/contact'>contact us</Link>
       </div>
   );
