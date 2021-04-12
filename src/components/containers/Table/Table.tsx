@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 
 interface OwnProps {
-  data: any[];
+  data: any;
 }
 
 type TableProps = Omit<JSX.IntrinsicElements['div'], 'children'> & OwnProps;
@@ -10,7 +10,7 @@ const Table: FunctionComponent<TableProps> = props => {
     const { data } = props;
     return (
         <div>
-            {data?.map((item: any) => {
+            {data?.data?.map((item: any) => {
                 return (
                     <div>
                         creditor: {item.creditor} 

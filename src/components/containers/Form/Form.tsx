@@ -27,7 +27,7 @@ const fullData: any = {data: []};
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     // update local data - not working properly
-    fullData.push({
+    fullData.data.push({
       creditor,
       loan,
       fee,
