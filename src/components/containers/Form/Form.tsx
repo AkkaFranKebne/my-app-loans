@@ -16,13 +16,14 @@ const Form: FunctionComponent<FormProps> = props => {
   const [APR, setApr] = useState('');
 
   // to do - not working properly
-//   //Redux
-//   const { data } = props;
+  //Redux
+  const { data } = props;
+
 
 //   // local copy of redux data
-//   const fullData: any[] = data || [];
+  const fullData: any = Array.isArray(data) ?  {data: []} : data;
 
-const fullData: any = {data: []};
+// const fullData: any = {data: []};
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
@@ -33,6 +34,7 @@ const fullData: any = {data: []};
       fee,
       APR,
     });
+    console.log('update local data', fullData)
     //state
     setCreditor('');
     setLoan('');
