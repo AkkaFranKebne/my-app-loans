@@ -4,7 +4,7 @@ import { addTest } from '../../../redux/actions';
 
 interface OwnProps {
   addTest: any;
-  data: any [];
+  data: any;
 }
 
 type FormProps = JSX.IntrinsicElements['form'] & OwnProps;
@@ -22,7 +22,7 @@ const Form: FunctionComponent<FormProps> = props => {
 //   // local copy of redux data
 //   const fullData: any[] = data || [];
 
-const fullData: any[] = [];
+const fullData: any = {data: []};
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();

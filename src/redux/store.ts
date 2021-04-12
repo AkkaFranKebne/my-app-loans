@@ -2,12 +2,15 @@ import { createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import rootReducer from './reducer';
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 const persistConfig = {
     key: 'root',
     storage,
+    stateReconciler: hardSet,
   }
 
+  //@ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = createStore(
