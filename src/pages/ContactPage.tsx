@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from '../components/elements';
 
 interface OwnProps {
-  totalLoan: any;
-  totalFee: any;
-  totalApr: any;
+  totals: any;
 }
 
 type ContactPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const ContactPage: FunctionComponent<ContactPageProps> = props => {
-  const { totalLoan, totalFee, totalApr } = props;
+  const { totalLoan, totalFee, totalApr } = props?.totals;
 
   return (
     <main>
@@ -25,9 +23,7 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
 
 const mapStateToProps = (state: any) => {
   return {
-    totalLoan: state.totalLoan,
-    totalFee: state.totalFee,
-    totalApr: state.totalApr,
+    totals: state.totals,
   };
 };
 

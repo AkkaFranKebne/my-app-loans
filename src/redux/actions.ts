@@ -5,23 +5,9 @@ export function addTest(test: any) {
   };
 }
 
-export function addLoan(totalLoan: any) {
+export function addTotals(totals: any) {
   return {
-    type: 'ADD_LOAN',
-    payload: totalLoan,
-  };
-}
-
-export function addFee(totalFee: any) {
-  return {
-    type: 'ADD_FEE',
-    payload: totalFee,
-  };
-}
-
-export function addApr(totalApr: any) {
-  return {
-    type: 'ADD_APR',
-    payload: totalApr,
+    type: 'ADD_TOTALS',
+    payload: totals,
   };
 }

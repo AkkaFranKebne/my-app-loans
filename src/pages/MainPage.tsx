@@ -5,20 +5,17 @@ import { connect } from 'react-redux';
 
 interface OwnProps {
   test: any;
-  totalLoan: any;
-  totalFee: any;
-  totalApr: any;
+  totals: any;
 }
 
 type MainPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const MainPage: FunctionComponent<MainPageProps> = props => {
-  const { test, ...rest } = props;
-
+  const { test, totals } = props;
   return (
     <main>
-      <Form data={test} totals={{ ...rest }} />
-      <Table data={test} totals={{ ...rest }} />
+      <Form data={test} total={totals} />
+      <Table data={test} total={totals} />
       <Link href="/contact">contact us</Link>
     </main>
   );
@@ -27,9 +24,7 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
 const mapStateToProps = (state: any) => {
   return {
     test: state.test,
-    totalLoan: state.totalLoan,
-    totalFee: state.totalFee,
-    totalApr: state.totalApr,
+    totals: state.totals,
   };
 };
 

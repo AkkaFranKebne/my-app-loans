@@ -1,14 +1,12 @@
 import React, { FunctionComponent, useState } from 'react';
 import { connect } from 'react-redux';
-import { addTest, addLoan, addFee, addApr } from '../../../redux/actions';
+import { addTest, addTotals } from '../../../redux/actions';
 
 interface OwnProps {
   addTest: any;
-  addLoan: any;
-  addFee: any;
-  addApr: any;
+  addTotals: any;
   data: any;
-  totals: {
+  total: {
     totalLoan: any;
     totalFee: any;
     totalApr: any;
@@ -26,18 +24,14 @@ const defaultValueState = {
 
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
-  // const [creditor, setCreditor] = useState('');
-  // const [loan, setLoan] = useState(0);
-  // const [fee, setFee] = useState(0);
-  // const [apr, setApr] = useState(0);
 
   // to do - not working properly
   //Redux
-  const { data, totals } = props;
-  const { totalLoan, totalFee, totalApr } = totals;
+  const { data, total } = props;
 
   //   // local copy of redux data
   const fullData: any = Array.isArray(data) ? { data: [] } : data;
+  const fullTotal: any = Array.isArray(total) ? { totalLoan: 0, totalFee: 0, totalApr: 0 } : total;
 
   const handleChange = (event: any) => {
     const { name, value: newValue, type } = event.target;
@@ -50,8 +44,6 @@ const Form: FunctionComponent<FormProps> = props => {
       ...values,
       [name]: value,
     });
-
-    console.log('values', values);
   };
 
   const handleOnSubmit = (event: any) => {
@@ -60,9 +52,11 @@ const Form: FunctionComponent<FormProps> = props => {
     fullData.data.push(values);
     //update Redux
     props.addTest(fullData);
-    props.addLoan(totalLoan + values.loan);
-    props.addFee(totalFee + values.fee);
-    props.addApr(totalApr + values.apr);
+    props.addTotals({
+      totalLoan: fullTotal.totalLoan + values.loan,
+      totalFee: fullTotal.totalFee + values.fee,
+      totalApr: fullTotal.totalApr + values.apr,
+    });
     //state
     setValues(defaultValueState);
   };
@@ -92,9 +86,7 @@ const Form: FunctionComponent<FormProps> = props => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     addTest: (test: any) => dispatch(addTest(test)),
-    addLoan: (totalLoan: any) => dispatch(addLoan(totalLoan)),
-    addFee: (totalFee: any) => dispatch(addFee(totalFee)),
-    addApr: (totalApr: any) => dispatch(addApr(totalApr)),
+    addTotals: (totals: any) => dispatch(addTotals(totals)),
   };
 };
 

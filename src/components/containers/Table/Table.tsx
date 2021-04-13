@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 interface OwnProps {
   data: any;
-  totals: {
+  total: {
     totalLoan: any;
     totalFee: any;
     totalApr: any;
@@ -12,8 +12,8 @@ interface OwnProps {
 type TableProps = Omit<JSX.IntrinsicElements['table'], 'children'> & OwnProps;
 
 const Table: FunctionComponent<TableProps> = props => {
-  const { data, totals } = props;
-  const { totalLoan, totalFee, totalApr } = totals;
+  const { data, total } = props;
+  const { totalLoan, totalFee, totalApr } = total;
 
   return (
     <table width="100%">
