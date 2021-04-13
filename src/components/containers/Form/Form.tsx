@@ -34,6 +34,7 @@ const Form: FunctionComponent<FormProps> = props => {
   const fullData: any = Array.isArray(data) ? { data: [] } : data;
   const fullTotal: any = Array.isArray(total) ? { totalLoan: 0, totalFee: 0, totalApr: 0 } : total;
 
+  //validation functions
   const textValidation = (fieldValue: string) => {
     if (fieldValue.trim() === '') {
       return `This field is required`;
@@ -71,9 +72,9 @@ const Form: FunctionComponent<FormProps> = props => {
   };
 
   const validate = {
-    creditor: (text: any) => textValidation(text),
-    loan: (number: any) => numberValidation(number),
-    fee: (number: any) => numberValidation(number),
+    creditor: textValidation,
+    loan: numberValidation,
+    fee: numberValidation,
     apr: percentageValidation,
   };
 
@@ -98,9 +99,10 @@ const Form: FunctionComponent<FormProps> = props => {
       (acc, key) => {
         // @ts-ignore
         const newError = validate[key](values[key]);
+        console.log('acc', acc);
         return {
           errors: {
-            ...acc.errors,
+            // ...acc.errors,  // no, we do not need the old errors
             ...(newError && { [key]: newError }),
           },
         };
@@ -112,17 +114,21 @@ const Form: FunctionComponent<FormProps> = props => {
 
     setErrors(formValidation.errors);
 
-    // update local data
-    fullData.data.push(values);
-    //update Redux
-    props.addTest(fullData);
-    props.addTotals({
-      totalLoan: fullTotal.totalLoan + values.loan,
-      totalFee: fullTotal.totalFee + values.fee,
-      totalApr: fullTotal.totalApr + values.apr,
-    });
-    //state
-    setValues(defaultValueState);
+    const noErrors = Object.keys(formValidation.errors).length === 0;
+
+    if (noErrors) {
+      // update local data
+      fullData.data.push(values);
+      //update Redux
+      props.addTest(fullData);
+      props.addTotals({
+        totalLoan: fullTotal.totalLoan + values.loan,
+        totalFee: fullTotal.totalFee + values.fee,
+        totalApr: fullTotal.totalApr + values.apr,
+      });
+      //state
+      setValues(defaultValueState);
+    }
   };
 
   return (
