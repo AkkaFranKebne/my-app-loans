@@ -4,3 +4,24 @@ export function addTest(test: any) {
         payload: test
     }
 }
+
+export function addLoan(totalLoan: any) {
+    return {
+        type: 'ADD_LOAN',
+        payload: totalLoan
+    }
+}
+
+export function addFee(totalFee: any) {
+    return {
+        type: 'ADD_FEE',
+        payload: totalFee
+    }
+}
+
+export function addApr(totalApr: any) {
+    return {
+        type: 'ADD_APR',
+        payload: totalApr
+    }
+}

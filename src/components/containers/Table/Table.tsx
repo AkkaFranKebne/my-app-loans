@@ -1,17 +1,20 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 
 interface OwnProps {
   data: any;
+  totals: {
+    totalLoan: any;
+    totalFee: any;
+    totalApr: any;
+  }
 }
 
 type TableProps = Omit<JSX.IntrinsicElements['table'], 'children'> & OwnProps;
 
 const Table: FunctionComponent<TableProps> = props => {
-    const [loan, setLoan] = useState(0);
-    const [fee, setFee] = useState(0);
-    const [apr, setApr] = useState(0);
 
-    const { data } = props;
+    const { data, totals } = props;
+    const { totalLoan, totalFee, totalApr } = totals;
 
     return (
         <table width="100%">
@@ -35,10 +38,10 @@ const Table: FunctionComponent<TableProps> = props => {
             })}
             {data?.data?.length > 0 &&(
                 <tr>
-                    <th>-</th>
-                    <th>{loan}</th>
-                    <th>{fee}</th>
-                    <th>{apr}</th>
+                    <th>Total:</th>
+                    <th>{totalLoan}</th>
+                    <th>{totalFee}</th>
+                    <th>{totalApr}</th>
                 </tr>
             )}
         </table>
