@@ -24,6 +24,7 @@ const defaultValueState = {
 
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
+  const [errors, setErrors] = React.useState({});
 
   // to do - not working properly
   //Redux
@@ -32,6 +33,49 @@ const Form: FunctionComponent<FormProps> = props => {
   //   // local copy of redux data
   const fullData: any = Array.isArray(data) ? { data: [] } : data;
   const fullTotal: any = Array.isArray(total) ? { totalLoan: 0, totalFee: 0, totalApr: 0 } : total;
+
+  const textValidation = (fieldValue: string) => {
+    if (fieldValue.trim() === '') {
+      return `This field is required`;
+    }
+    if (/[^a-zA-Z -]/.test(fieldValue)) {
+      return 'Invalid characters';
+    }
+    if (fieldValue.trim().length < 3) {
+      return `Write at least three characters`;
+    }
+    return null;
+  };
+
+  const numberValidation = (num: number) => {
+    if (!num) {
+      return 'This field is required';
+    }
+    if (num < 0) {
+      return 'Write a proper number';
+    }
+    return null;
+  };
+
+  const percentageValidation = (perc: number) => {
+    if (!perc) {
+      return 'This field is required';
+    }
+    if (perc > 100) {
+      return 'Write a proper percentage';
+    }
+    if (perc < 0) {
+      return 'Write a proper percentage';
+    }
+    return null;
+  };
+
+  const validate = {
+    creditor: (text: any) => textValidation(text),
+    loan: (number: any) => numberValidation(number),
+    fee: (number: any) => numberValidation(number),
+    apr: percentageValidation,
+  };
 
   const handleChange = (event: any) => {
     const { name, value: newValue, type } = event.target;
@@ -48,6 +92,26 @@ const Form: FunctionComponent<FormProps> = props => {
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
+
+    // validate the form
+    const formValidation = Object.keys(values).reduce(
+      (acc, key) => {
+        // @ts-ignore
+        const newError = validate[key](values[key]);
+        return {
+          errors: {
+            ...acc.errors,
+            ...(newError && { [key]: newError }),
+          },
+        };
+      },
+      {
+        errors: { ...errors },
+      },
+    );
+
+    setErrors(formValidation.errors);
+
     // update local data
     fullData.data.push(values);
     //update Redux
@@ -72,10 +136,16 @@ const Form: FunctionComponent<FormProps> = props => {
         value={values.creditor}
         onChange={event => handleChange(event)}
       />
+      {/* @ts-ignore */}
+      <span>{errors.creditor}</span>
       <label htmlFor="loan">Loan (SEK):</label>
       <input type="number" name="loan" id="loan" required value={values.loan} onChange={event => handleChange(event)} />
+      {/* @ts-ignore */}
+      <span>{errors.loan}</span>
       <label htmlFor="fee">Fee (SEK):</label>
       <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
+      {/* @ts-ignore */}
+      <span>{errors.fee}</span>
       <label htmlFor="APR">APR (%):</label>
       <input
         type="number"
@@ -86,6 +156,8 @@ const Form: FunctionComponent<FormProps> = props => {
         required
         onChange={event => handleChange(event)}
       />
+      {/* @ts-ignore */}
+      <span>{errors.apr}</span>
       <input type="submit" />
     </form>
   );
