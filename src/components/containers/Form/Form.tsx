@@ -77,7 +77,15 @@ const Form: FunctionComponent<FormProps> = props => {
       <label htmlFor="fee">Fee (SEK):</label>
       <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
       <label htmlFor="APR">APR (%):</label>
-      <input type="number" name="apr" id="apr" value={values.apr} required onChange={event => handleChange(event)} />
+      <input
+        type="number"
+        step="0.01"
+        name="apr"
+        id="apr"
+        value={values.apr}
+        required
+        onChange={event => handleChange(event)}
+      />
       <input type="submit" />
     </form>
   );
