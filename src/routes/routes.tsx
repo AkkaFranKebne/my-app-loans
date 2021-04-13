@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  MainPage,
-  ContactPage,
-} from '../pages';
+import { MainPage, ContactPage } from '../pages';
 import { RouteProps } from 'react-router-dom';
-
 
 export const routes: RouteProps[] = [
   {
@@ -21,7 +17,7 @@ export const routes: RouteProps[] = [
   },
   {
     path: '*',
-    children: null,  //@ todo: error page
+    children: null, //@ todo: error page
   },
 ];
 

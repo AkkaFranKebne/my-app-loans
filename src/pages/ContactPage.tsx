@@ -14,10 +14,12 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
   const { totalLoan, totalFee, totalApr } = props;
 
   return (
-      <main>
-        <span>Contact us and get {totalLoan}SEK total loan with {totalFee}SEK total fee and APR {totalApr}% !</span>
-        <Link href='/'>back to calculations</Link>
-      </main>
+    <main>
+      <span>
+        Contact us and get {totalLoan}SEK total loan with {totalFee}SEK total fee and APR {totalApr}% !
+      </span>
+      <Link href="/">back to calculations</Link>
+    </main>
   );
 };
 
@@ -26,7 +28,7 @@ const mapStateToProps = (state: any) => {
     totalLoan: state.totalLoan,
     totalFee: state.totalFee,
     totalApr: state.totalApr,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(ContactPage);

@@ -7,7 +7,7 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 const persistConfig = {
   key: 'root',
   storage,
-  stateReconciler: hardSet
+  stateReconciler: hardSet,
 };
 
 //@ts-ignore
@@ -16,7 +16,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
   persistedReducer,
   //@ts-ignore
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 const persistor = persistStore(store);

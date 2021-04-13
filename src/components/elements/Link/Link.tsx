@@ -11,12 +11,9 @@ const Link: FunctionComponent<LinkProps> = props => {
   const { className, children, href } = props;
 
   return (
-    <NavLink
-    to={href}
-    activeClassName={className}
-  >
-    {children}
-  </NavLink>
+    <NavLink to={href} activeClassName={className}>
+      {children}
+    </NavLink>
   );
 };
 

@@ -16,11 +16,11 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
   const { test, ...rest } = props;
 
   return (
-      <main>
-        <Form data={test} totals={{...rest}}/>
-        <Table data={test} totals={{...rest}}/>
-        <Link href='/contact'>contact us</Link>
-      </main>
+    <main>
+      <Form data={test} totals={{ ...rest }} />
+      <Table data={test} totals={{ ...rest }} />
+      <Link href="/contact">contact us</Link>
+    </main>
   );
 };
 
@@ -30,7 +30,7 @@ const mapStateToProps = (state: any) => {
     totalLoan: state.totalLoan,
     totalFee: state.totalFee,
     totalApr: state.totalApr,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(MainPage);

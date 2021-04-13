@@ -11,14 +11,14 @@ type HeaderProps = Omit<JSX.IntrinsicElements['header'], 'children'> & OwnProps;
 
 const Header: FunctionComponent<HeaderProps> = props => {
   const { test, className, ...rest } = props;
-  console.log('test', test)
+
   const headerClassName = cx({
     [styles.header]: true,
     ...(className && { [className]: true }),
   });
 
   return (
-    <header className={headerClassName} {...rest}> 
+    <header className={headerClassName} {...rest}>
       Header here
     </header>
   );
@@ -26,8 +26,8 @@ const Header: FunctionComponent<HeaderProps> = props => {
 
 const mapStateToProps = (state: any) => {
   return {
-    test: state.test
-  }
-}
+    test: state.test,
+  };
+};
 
 export default connect(mapStateToProps)(Header);

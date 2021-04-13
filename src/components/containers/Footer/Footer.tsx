@@ -9,7 +9,7 @@ const Footer: FunctionComponent<FooterProps> = props => {
   const { className, ...rest } = props;
 
   return (
-    <footer className={styles.footer} {...rest}> 
+    <footer className={styles.footer} {...rest}>
       Footer here!
     </footer>
   );

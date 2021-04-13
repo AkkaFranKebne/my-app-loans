@@ -6,10 +6,9 @@ export const OnMobileOnly: React.FC = ({ children }) => {
 };
 
 export const OnTabletOnly: React.FC = ({ children }) => {
-    return <Media query="(min-width: 801px) and (max-width: 991px)" defaultMatches={false} render={() => children} />;
-  };
+  return <Media query="(min-width: 801px) and (max-width: 991px)" defaultMatches={false} render={() => children} />;
+};
 
 export const OnDesktopOnly: React.FC = ({ children }) => {
   return <Media query="(min-width:992px)" defaultMatches={false} render={() => children} />;
 };
-
