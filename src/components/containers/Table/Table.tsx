@@ -31,7 +31,7 @@ const Table: FunctionComponent<TableProps> = props => {
             <td>{item.creditor} </td>
             <td>{item.loan} </td>
             <td>{item.fee} </td>
-            <td> {item.APR} </td>
+            <td> {item.apr} </td>
           </tr>
         );
       })}

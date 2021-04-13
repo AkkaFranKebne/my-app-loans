@@ -17,11 +17,19 @@ interface OwnProps {
 
 type FormProps = JSX.IntrinsicElements['form'] & OwnProps;
 
+const defaultValueState = {
+  creditor: '',
+  loan: 0,
+  fee: 0,
+  apr: 0,
+};
+
 const Form: FunctionComponent<FormProps> = props => {
-  const [creditor, setCreditor] = useState('');
-  const [loan, setLoan] = useState(0);
-  const [fee, setFee] = useState(0);
-  const [apr, setApr] = useState(0);
+  const [values, setValues] = useState(defaultValueState);
+  // const [creditor, setCreditor] = useState('');
+  // const [loan, setLoan] = useState(0);
+  // const [fee, setFee] = useState(0);
+  // const [apr, setApr] = useState(0);
 
   // to do - not working properly
   //Redux
@@ -31,27 +39,32 @@ const Form: FunctionComponent<FormProps> = props => {
   //   // local copy of redux data
   const fullData: any = Array.isArray(data) ? { data: [] } : data;
 
-  // const fullData: any = {data: []};
+  const handleChange = (event: any) => {
+    const { name, value: newValue, type } = event.target;
+
+    // keep number fields as numbers
+    const value = type === 'number' ? +newValue : newValue;
+
+    // save field values
+    setValues({
+      ...values,
+      [name]: value,
+    });
+
+    console.log('values', values);
+  };
 
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     // update local data
-    fullData.data.push({
-      creditor,
-      loan,
-      fee,
-      apr,
-    });
+    fullData.data.push(values);
     //update Redux
     props.addTest(fullData);
-    props.addLoan(totalLoan + loan);
-    props.addFee(totalFee + fee);
-    props.addApr(totalApr + apr);
+    props.addLoan(totalLoan + values.loan);
+    props.addFee(totalFee + values.fee);
+    props.addApr(totalApr + values.apr);
     //state
-    setCreditor('');
-    setLoan(0);
-    setFee(0);
-    setApr(0);
+    setValues(defaultValueState);
   };
 
   return (
@@ -61,22 +74,16 @@ const Form: FunctionComponent<FormProps> = props => {
         type="text"
         name="creditor"
         id="creditor"
-        placeholder="Creditor Name"
-        value={creditor}
-        onChange={event => setCreditor(event.target.value)}
+        placeholder="Creditor"
+        value={values.creditor}
+        onChange={event => handleChange(event)}
       />
       <label htmlFor="loan">Loan (SEK):</label>
-      <input
-        type="number"
-        name="loan"
-        id="loan"
-        value={loan}
-        onChange={event => setLoan(parseFloat(event.target.value))}
-      />
+      <input type="number" name="loan" id="loan" required value={values.loan} onChange={event => handleChange(event)} />
       <label htmlFor="fee">Fee (SEK):</label>
-      <input type="number" name="fee" id="fee" value={fee} onChange={event => setFee(parseFloat(event.target.value))} />
+      <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
       <label htmlFor="APR">APR (%):</label>
-      <input type="number" name="APR" id="APR" value={apr} onChange={event => setFee(parseFloat(event.target.value))} />
+      <input type="number" name="apr" id="apr" value={values.apr} required onChange={event => handleChange(event)} />
       <input type="submit" />
     </form>
   );
