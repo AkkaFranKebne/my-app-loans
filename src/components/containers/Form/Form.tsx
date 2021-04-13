@@ -66,7 +66,7 @@ const Form: FunctionComponent<FormProps> = props => {
             value={creditor}
             onChange={event => setCreditor(event.target.value)}
           />
-           <label htmlFor='loan'>Loan:</label>
+           <label htmlFor='loan'>Loan (SEK):</label>
             <input
             type="number" 
             name='loan'
@@ -74,7 +74,7 @@ const Form: FunctionComponent<FormProps> = props => {
             value={loan}
             onChange={event => setLoan(parseFloat(event.target.value))}
           />
-           <label htmlFor='fee'>Fee:</label>
+           <label htmlFor='fee'>Fee (SEK):</label>
             <input
             type="number" 
             name='fee'
@@ -82,7 +82,7 @@ const Form: FunctionComponent<FormProps> = props => {
             value={fee}
             onChange={event => setFee(parseFloat(event.target.value))}
           />
-           <label htmlFor='APR'>APR:</label>
+           <label htmlFor='APR'>APR (%):</label>
             <input
             type="number" 
             name='APR'

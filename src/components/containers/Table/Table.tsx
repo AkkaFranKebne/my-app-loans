@@ -39,9 +39,9 @@ const Table: FunctionComponent<TableProps> = props => {
             {data?.data?.length > 0 &&(
                 <tr>
                     <th>Total:</th>
-                    <th>{totalLoan}</th>
-                    <th>{totalFee}</th>
-                    <th>{totalApr}</th>
+                    <th>{totalLoan} SEK</th>
+                    <th>{totalFee} SEK</th>
+                    <th>{totalApr} %</th>
                 </tr>
             )}
         </table>
