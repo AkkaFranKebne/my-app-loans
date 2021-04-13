@@ -57,27 +57,36 @@ const Form: FunctionComponent<FormProps> = props => {
 
   return (
         <form onSubmit={handleOnSubmit}>
+          <label htmlFor='creditor'>Creditor:</label>
           <input
             type="text" 
+            name='creditor'
+            id='creditor'
             placeholder="Creditor Name"
             value={creditor}
             onChange={event => setCreditor(event.target.value)}
           />
+           <label htmlFor='loan'>Loan:</label>
             <input
             type="number" 
-            placeholder="loan amount"
+            name='loan'
+            id='loan'
             value={loan}
             onChange={event => setLoan(parseFloat(event.target.value))}
           />
+           <label htmlFor='fee'>Fee:</label>
             <input
             type="number" 
-            placeholder="Monthly fee"
+            name='fee'
+            id='fee'
             value={fee}
             onChange={event => setFee(parseFloat(event.target.value))}
           />
+           <label htmlFor='APR'>APR:</label>
             <input
-            type="text" 
-            placeholder="APR"
+            type="number" 
+            name='APR'
+            id='APR'
             value={apr}
             onChange={event => setFee(parseFloat(event.target.value))}
           />
