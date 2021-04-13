@@ -1,23 +1,31 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from '../components/elements';
 
 interface OwnProps {
-  test: any;
+  totalLoan: any;
+  totalFee: any;
+  totalApr: any;
 }
 
-type ContactPageProps = Omit<JSX.IntrinsicElements['article'], 'children'> & OwnProps;
+type ContactPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const ContactPage: FunctionComponent<ContactPageProps> = props => {
-  const { test } = props;
-  console.log('contact page test', test)
+  const { totalLoan, totalFee, totalApr } = props;
+
   return (
-      <div>I am contact page</div>
+      <main>
+        <span>Contact us and get {totalLoan}SEK total loan with {totalFee}SEK total fee and APR {totalApr}% !</span>
+        <Link href='/'>back to calculations</Link>
+      </main>
   );
 };
 
 const mapStateToProps = (state: any) => {
   return {
-    test: state.test
+    totalLoan: state.totalLoan,
+    totalFee: state.totalFee,
+    totalApr: state.totalApr,
   }
 }
 

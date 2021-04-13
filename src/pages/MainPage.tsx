@@ -10,17 +10,17 @@ interface OwnProps {
   totalApr: any;
 }
 
-type MainPageProps = Omit<JSX.IntrinsicElements['div'], 'children'> & OwnProps;
+type MainPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const MainPage: FunctionComponent<MainPageProps> = props => {
   const { test, ...rest } = props;
 
   return (
-      <div>
+      <main>
         <Form data={test} totals={{...rest}}/>
         <Table data={test} totals={{...rest}}/>
         <Link href='/contact'>contact us</Link>
-      </div>
+      </main>
   );
 };
 
