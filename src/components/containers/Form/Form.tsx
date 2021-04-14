@@ -95,26 +95,15 @@ const Form: FunctionComponent<FormProps> = props => {
     event.preventDefault();
 
     // validate the form
-    const formValidation = Object.keys(values).reduce(
-      (acc, key) => {
+    const formValidation = Object.keys(values)
+      .map(key => {
         // @ts-ignore
         const newError = validate[key](values[key]);
-        console.log('acc', acc);
-        return {
-          errors: {
-            // ...acc.errors,  // no, we do not need the old errors
-            ...(newError && { [key]: newError }),
-          },
-        };
-      },
-      {
-        errors: { ...errors },
-      },
-    );
+        return newError && { [key]: newError };
+      })
+      .filter(error => error !== null);
 
-    setErrors(formValidation.errors);
-
-    const noErrors = Object.keys(formValidation.errors).length === 0;
+    const noErrors = formValidation.length < 1;
 
     if (noErrors) {
       // update local data
@@ -128,6 +117,17 @@ const Form: FunctionComponent<FormProps> = props => {
       });
       //state
       setValues(defaultValueState);
+      setErrors({});
+    } else {
+      //show errors
+      setErrors(
+        formValidation.reduce((acc, error) => {
+          return {
+            ...acc,
+            ...error,
+          };
+        }),
+      );
     }
   };
 
