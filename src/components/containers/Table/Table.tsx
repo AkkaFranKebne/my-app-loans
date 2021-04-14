@@ -18,31 +18,37 @@ const Table: FunctionComponent<TableProps> = props => {
   return (
     <table width="100%">
       {data?.data?.length > 0 && (
-        <tr>
-          <th>creditor</th>
-          <th>loan</th>
-          <th>fee</th>
-          <th>APR</th>
-        </tr>
-      )}
-      {data?.data?.map((item: any) => {
-        return (
+        <thead>
           <tr>
-            <td>{item.creditor} </td>
-            <td>{item.loan} </td>
-            <td>{item.fee} </td>
-            <td> {item.apr} </td>
+            <th>creditor</th>
+            <th>loan</th>
+            <th>fee</th>
+            <th>APR</th>
           </tr>
-        );
-      })}
-      {data?.data?.length > 0 && (
-        <tr>
-          <th>Total:</th>
-          <th>{totalLoan} SEK</th>
-          <th>{totalFee} SEK</th>
-          <th>{totalApr} %</th>
-        </tr>
+        </thead>
       )}
+      <tbody>
+        {data?.data?.map((item: any, index: number) => {
+          return (
+            <tr key={`table-row-${index}`}>
+              <td>{item.creditor} </td>
+              <td>{item.loan} </td>
+              <td>{item.fee} </td>
+              <td> {item.apr} </td>
+            </tr>
+          );
+        })}
+      </tbody>
+      <tfoot>
+        {data?.data?.length > 0 && (
+          <tr>
+            <th>Total:</th>
+            <th>{totalLoan} SEK</th>
+            <th>{totalFee} SEK</th>
+            <th>{totalApr} %</th>
+          </tr>
+        )}
+      </tfoot>
     </table>
   );
 };

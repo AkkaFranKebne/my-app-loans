@@ -1,16 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import styles from './Header.module.scss';
-import { connect } from 'react-redux';
 import cx from 'clsx';
 
-interface OwnProps {
-  test: any;
-}
+interface OwnProps {}
 
 type HeaderProps = Omit<JSX.IntrinsicElements['header'], 'children'> & OwnProps;
 
 const Header: FunctionComponent<HeaderProps> = props => {
-  const { test, className, ...rest } = props;
+  const { className, ...rest } = props;
 
   const headerClassName = cx({
     [styles.header]: true,
@@ -24,10 +21,4 @@ const Header: FunctionComponent<HeaderProps> = props => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    test: state.test,
-  };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;
