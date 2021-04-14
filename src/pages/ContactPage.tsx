@@ -16,7 +16,7 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
       <span>
         Contact us and get {totalLoan}SEK total loan with {totalFee}SEK total fee and APR {totalApr}% !
       </span>
-      <Link href="/">back to calculations</Link>
+      <Link href="/">back</Link>
     </main>
   );
 };

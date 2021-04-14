@@ -12,11 +12,14 @@ type MainPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const MainPage: FunctionComponent<MainPageProps> = props => {
   const { test, totals } = props;
+  console.log('totals', totals);
+  const showLink = !Array.isArray(totals);
+
   return (
     <main>
       <Form data={test} total={totals} />
       <Table data={test} total={totals} />
-      <Link href="/contact">contact us</Link>
+      {showLink && <Link href="/contact">See more</Link>}
     </main>
   );
 };

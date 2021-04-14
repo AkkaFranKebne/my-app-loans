@@ -16,7 +16,7 @@ const Header: FunctionComponent<HeaderProps> = props => {
 
   return (
     <header className={headerClassName} {...rest}>
-      Header here
+      <h1>Aggregated loans calculator</h1>
     </header>
   );
 };
