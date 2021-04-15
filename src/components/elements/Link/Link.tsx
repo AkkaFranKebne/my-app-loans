@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
+import { arrowRight as Arrow } from '../../../assets/icons';
+import { Icon } from '../../../components/elements';
 import Styles from './Link.module.scss';
 
 interface OwnProps {
@@ -12,8 +14,9 @@ const Link: FunctionComponent<LinkProps> = props => {
   const { children, href } = props;
 
   return (
-    <NavLink to={href} activeClassName={Styles.button}>
+    <NavLink to={href} activeClassName={Styles.link}>
       {children}
+      <Icon icon={Arrow} />
     </NavLink>
   );
 };
