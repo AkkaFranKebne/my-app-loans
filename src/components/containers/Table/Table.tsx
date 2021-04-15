@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import Style from './Table.module.scss';
 
 interface OwnProps {
   data: any;
@@ -15,8 +16,12 @@ const Table: FunctionComponent<TableProps> = props => {
   const { data, total } = props;
   const { totalLoan, totalFee, totalApr } = total;
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
   return (
-    <table width="100%">
+    <table width="100%" className={Style.table}>
       {data?.data?.length > 0 && (
         <thead>
           <tr>
@@ -32,9 +37,9 @@ const Table: FunctionComponent<TableProps> = props => {
           return (
             <tr key={`table-row-${index}`}>
               <td>{item.creditor} </td>
-              <td>{item.loan} </td>
-              <td>{item.fee} </td>
-              <td> {item.apr} </td>
+              <td>{numberWithCommas(item.loan)} SEK</td>
+              <td>{numberWithCommas(item.fee)} SEK</td>
+              <td> {item.apr} %</td>
             </tr>
           );
         })}
@@ -42,10 +47,10 @@ const Table: FunctionComponent<TableProps> = props => {
       <tfoot>
         {data?.data?.length > 0 && (
           <tr>
-            <th>Total:</th>
-            <th>{totalLoan} SEK</th>
-            <th>{totalFee} SEK</th>
-            <th>{totalApr} %</th>
+            <th>After our help:</th>
+            <th>{numberWithCommas(totalLoan)} SEK</th>
+            <th>{numberWithCommas(totalFee)} SEK</th>
+            <th>{totalApr.toFixed(2)} %</th>
           </tr>
         )}
       </tfoot>

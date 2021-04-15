@@ -1,0 +1,50 @@
+@import '../../../styles/variables';
+
+.table {
+  margin: 1rem 0;
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    font-family: $font-header;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  td,
+  th {
+    border: 1px solid $color-white;
+    padding: 8px;
+  }
+
+  td {
+    text-align: right;
+
+    &:first-of-type {
+      text-align: left;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: $color-beige;
+  }
+
+  tr:hover {
+    background-color: $color-green;
+  }
+
+  thead th {
+    background-color: $color-beige;
+    color: $color-grey;
+    text-align: center;
+  }
+
+  tfoot th {
+    background-color: $color-grey;
+    color: $color-white;
+    text-align: right;
+    &:first-of-type {
+      text-align: left;
+    }
+  }
+}
