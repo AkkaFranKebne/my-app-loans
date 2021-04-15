@@ -16,9 +16,9 @@ const Table: FunctionComponent<TableProps> = props => {
   const { data, total } = props;
   const { totalLoan, totalFee, totalApr } = total;
 
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }
+  const numberWithCommas = (number: number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
 
   return (
     <table width="100%" className={Style.table}>
