@@ -26,6 +26,7 @@ const defaultValueState = {
 
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
+  const [errors, setErrors] = useState({});
 
   // to do - not working properly
   //Redux
