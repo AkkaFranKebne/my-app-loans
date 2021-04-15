@@ -11,21 +11,32 @@
     justify-content: space-between;
   }
 
-  label {
-    background-color: $color-beige;
-    color: $color-grey;
-    border-radius: 0.5rem;
-    margin-top: 2rem;
-    padding: 0.5rem;
-    font-size: 1.6rem;
-
-    &.inputError {
-      border: 1px solid $color-red;
-    }
+  .labelWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    position: relative;
 
     @include device-tablet {
       flex-basis: 49.5%;
-      flex-wrap: wrap;
+    }
+
+    label {
+      background-color: $color-beige;
+      color: $color-grey;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.5rem;
+      font-size: 1.6rem;
+      width: 100%;
+
+      &.inputError {
+        border: 1px solid $color-red;
+
+        @include device-tablet {
+          // margin-bottom: 5rem;
+        }
+      }
     }
   }
 
@@ -73,5 +84,9 @@
     padding: 1rem 0.5rem;
     border-radius: 0.5rem;
     margin-top: 1rem;
+
+    @include device-tablet {
+      position: relative;
+    }
   }
 }

@@ -26,7 +26,6 @@ const defaultValueState = {
 
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
-  const [errors, setErrors] = React.useState({});
 
   // to do - not working properly
   //Redux
@@ -135,58 +134,71 @@ const Form: FunctionComponent<FormProps> = props => {
 
   return (
     <form onSubmit={handleOnSubmit} className={Styles.form} autoComplete="off">
-      <label htmlFor="creditor" className={cx({ [Styles.inputError]: errors.creditor })}>
-        Creditor:
-        <input
-          type="text"
-          name="creditor"
-          id="creditor"
-          placeholder="Write here..."
-          value={values.creditor}
-          onChange={event => handleChange(event)}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck={false}
-        />
-      </label>
+      <div className={Styles.labelWrapper}>
+        <label htmlFor="creditor" className={cx({ [Styles.inputError]: errors.creditor })}>
+          Creditor:
+          <input
+            type="text"
+            name="creditor"
+            id="creditor"
+            placeholder="Write here..."
+            value={values.creditor}
+            onChange={event => handleChange(event)}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
+          />
+        </label>
 
-      {/* @ts-ignore */}
-      {errors.creditor && <span className={Styles.error}>{errors.creditor}</span>}
-      <label htmlFor="loan" className={cx({ [Styles.inputError]: errors.loan })}>
-        Loan (SEK):
-        <input
-          type="number"
-          name="loan"
-          id="loan"
-          required
-          value={values.loan}
-          onChange={event => handleChange(event)}
-        />
-      </label>
-      {/* @ts-ignore */}
-      {errors.loan && <span className={Styles.error}>{errors.loan}</span>}
-      <label htmlFor="fee" className={cx({ [Styles.inputError]: errors.fee })}>
-        Fee (SEK):
-        <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
-      </label>
-      {/* @ts-ignore */}
-      {errors.fee && <span className={Styles.error}>{errors.fee}</span>}
-      <label htmlFor="apr" className={cx({ [Styles.inputError]: errors.apr })}>
-        APR (%):
-        <input
-          type="number"
-          step="0.01"
-          name="apr"
-          id="apr"
-          value={values.apr}
-          required
-          onChange={event => handleChange(event)}
-        />
-      </label>
-
-      {/* @ts-ignore */}
-      {errors.apr && <span className={Styles.error}>{errors.apr}</span>}
+        {/* @ts-ignore */}
+        {errors.creditor && <span className={Styles.error}>{errors.creditor}</span>}
+      </div>
+      <div className={Styles.labelWrapper}>
+        <label htmlFor="loan" className={cx({ [Styles.inputError]: errors.loan })}>
+          Loan (SEK):
+          <input
+            type="number"
+            name="loan"
+            id="loan"
+            required
+            value={values.loan}
+            onChange={event => handleChange(event)}
+          />
+        </label>
+        {/* @ts-ignore */}
+        {errors.loan && <span className={Styles.error}>{errors.loan}</span>}
+      </div>
+      <div className={Styles.labelWrapper}>
+        <label htmlFor="fee" className={cx({ [Styles.inputError]: errors.fee })}>
+          Fee (SEK):
+          <input
+            type="number"
+            name="fee"
+            id="fee"
+            required
+            value={values.fee}
+            onChange={event => handleChange(event)}
+          />
+        </label>
+        {/* @ts-ignore */}
+        {errors.fee && <span className={Styles.error}>{errors.fee}</span>}
+      </div>
+      <div className={Styles.labelWrapper}>
+        <label htmlFor="apr" className={cx({ [Styles.inputError]: errors.apr })}>
+          APR (%):
+          <input
+            type="number"
+            step="0.01"
+            name="apr"
+            id="apr"
+            value={values.apr}
+            onChange={event => handleChange(event)}
+          />
+        </label>
+        {/* @ts-ignore */}
+        {errors.apr && <span className={Styles.error}>{errors.apr}</span>}
+      </div>
       <input type="submit" />
     </form>
   );
