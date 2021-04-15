@@ -141,7 +141,7 @@ const Form: FunctionComponent<FormProps> = props => {
           type="text"
           name="creditor"
           id="creditor"
-          placeholder="Creditor"
+          placeholder="Write here..."
           value={values.creditor}
           onChange={event => handleChange(event)}
           autoComplete="off"

@@ -3,6 +3,8 @@
 .content {
   width: 100%;
   min-height: $min-content-height;
+  max-width: $max-content-width;
+  margin: 0 auto;
   background-color: $color-white;
   padding: 1.5rem 1rem;
   display: flex;
