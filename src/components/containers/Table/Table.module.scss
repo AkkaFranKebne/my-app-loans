@@ -4,6 +4,7 @@
   margin: 1rem 0;
   border-collapse: collapse;
   width: 100%;
+  border-radius: 0.5rem;
 
   th {
     font-family: $font-header;
@@ -37,14 +38,28 @@
     background-color: $color-beige;
     color: $color-grey;
     text-align: center;
+
+    &:first-of-type {
+      border-top-left-radius: 0.5rem;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 0.5rem;
+    }
   }
 
   tfoot th {
     background-color: $color-grey;
     color: $color-white;
     text-align: right;
+
     &:first-of-type {
       text-align: left;
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    &:last-of-type {
+      border-bottom-right-radius: 0.5rem;
     }
   }
 }
