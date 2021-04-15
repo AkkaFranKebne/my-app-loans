@@ -115,7 +115,8 @@ const Form: FunctionComponent<FormProps> = props => {
       props.addTotals({
         totalLoan: fullTotal.totalLoan + values.loan,
         totalFee: fullTotal.totalFee + values.fee,
-        totalApr: fullTotal.totalApr + values.apr,
+        // @todo what is the apr calc?
+        totalApr: (fullTotal.totalApr + values.apr) / 2,
       });
       //state
       setValues(defaultValueState);

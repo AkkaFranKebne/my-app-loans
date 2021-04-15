@@ -22,7 +22,7 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
   return (
     <Layout>
       <CallToAction {...callToActionData} />
-      <Link href="/">Check more</Link>
+      <Link href="/">Try more</Link>
     </Layout>
   );
 };

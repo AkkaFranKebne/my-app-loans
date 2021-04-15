@@ -32,10 +32,6 @@
 
       &.inputError {
         border: 1px solid $color-red;
-
-        @include device-tablet {
-          // margin-bottom: 5rem;
-        }
       }
     }
   }
@@ -57,6 +53,10 @@
     white-space: nowrap;
     padding: 2rem 0.5rem;
     font-size: 2rem;
+
+    @include device-tablet {
+      padding: 0.5rem;
+    }
 
     &:placeholder {
       color: $color-lightgrey;
