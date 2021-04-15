@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from '../components/elements';
-import { Form, Table } from '../components/containers';
+import { CallToAction } from '../components/presentional';
+import { Form, Table, Layout } from '../components/containers';
 import { connect } from 'react-redux';
 
 interface OwnProps {
@@ -16,11 +17,12 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
   const showLink = !Array.isArray(totals);
 
   return (
-    <main>
+    <Layout>
+      <CallToAction />
       <Form data={test} total={totals} />
       <Table data={test} total={totals} />
       {showLink && <Link href="/contact">See more</Link>}
-    </main>
+    </Layout>
   );
 };
 

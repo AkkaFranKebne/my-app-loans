@@ -1,6 +1,8 @@
+import cx from 'clsx';
 import React, { FunctionComponent, useState } from 'react';
 import { connect } from 'react-redux';
 import { addTest, addTotals } from '../../../redux/actions';
+import Styles from './Form.module.scss';
 
 interface OwnProps {
   addTest: any;
@@ -132,38 +134,59 @@ const Form: FunctionComponent<FormProps> = props => {
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <label htmlFor="creditor">Creditor:</label>
-      <input
-        type="text"
-        name="creditor"
-        id="creditor"
-        placeholder="Creditor"
-        value={values.creditor}
-        onChange={event => handleChange(event)}
-      />
+    <form onSubmit={handleOnSubmit} className={Styles.form} autoComplete="off">
+      <label htmlFor="creditor" className={cx({ [Styles.inputError]: errors.creditor })}>
+        Creditor:
+        <input
+          type="text"
+          name="creditor"
+          id="creditor"
+          placeholder="Creditor"
+          value={values.creditor}
+          onChange={event => handleChange(event)}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+        />
+      </label>
+
       {/* @ts-ignore */}
-      <span>{errors.creditor}</span>
-      <label htmlFor="loan">Loan (SEK):</label>
-      <input type="number" name="loan" id="loan" required value={values.loan} onChange={event => handleChange(event)} />
+      {errors.creditor && <span className={Styles.error}>{errors.creditor}</span>}
+      <label htmlFor="loan" className={cx({ [Styles.inputError]: errors.loan })}>
+        Loan (SEK):
+        <input
+          type="number"
+          name="loan"
+          id="loan"
+          required
+          value={values.loan}
+          onChange={event => handleChange(event)}
+        />
+      </label>
       {/* @ts-ignore */}
-      <span>{errors.loan}</span>
-      <label htmlFor="fee">Fee (SEK):</label>
-      <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
+      {errors.loan && <span className={Styles.error}>{errors.loan}</span>}
+      <label htmlFor="fee" className={cx({ [Styles.inputError]: errors.fee })}>
+        Fee (SEK):
+        <input type="number" name="fee" id="fee" required value={values.fee} onChange={event => handleChange(event)} />
+      </label>
       {/* @ts-ignore */}
-      <span>{errors.fee}</span>
-      <label htmlFor="APR">APR (%):</label>
-      <input
-        type="number"
-        step="0.01"
-        name="apr"
-        id="apr"
-        value={values.apr}
-        required
-        onChange={event => handleChange(event)}
-      />
+      {errors.fee && <span className={Styles.error}>{errors.fee}</span>}
+      <label htmlFor="apr" className={cx({ [Styles.inputError]: errors.apr })}>
+        APR (%):
+        <input
+          type="number"
+          step="0.01"
+          name="apr"
+          id="apr"
+          value={values.apr}
+          required
+          onChange={event => handleChange(event)}
+        />
+      </label>
+
       {/* @ts-ignore */}
-      <span>{errors.apr}</span>
+      {errors.apr && <span className={Styles.error}>{errors.apr}</span>}
       <input type="submit" />
     </form>
   );

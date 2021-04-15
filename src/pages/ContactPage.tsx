@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '../components/elements';
+import { Layout } from '../components/containers';
 
 interface OwnProps {
   totals: any;
@@ -12,12 +13,12 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
   const { totalLoan, totalFee, totalApr } = props?.totals;
 
   return (
-    <main>
+    <Layout>
       <span>
         Contact us and get {totalLoan}SEK total loan with {totalFee}SEK total fee and APR {totalApr}% !
       </span>
       <Link href="/">back</Link>
-    </main>
+    </Layout>
   );
 };
 

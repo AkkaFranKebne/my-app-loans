@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.container {
+  background-color: $color-white;
+  padding: 1.5rem 1rem;
+  width: 100%;
+
+  h2 {
+    font-family: $font-header;
+    font-size: 2rem;
+    line-height: 4rem;
+    letter-spacing: 0.03em;
+    color: $color-green;
+    text-align: left;
+  }
+
+  p {
+    font-size: 1.8rem;
+    line-height: 4rem;
+    color: $color-grey;
+    text-align: left;
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../../styles/variables';
+
+.content {
+  width: 100%;
+  min-height: $min-content-height;
+  background-color: $color-white;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}

@@ -10,7 +10,7 @@ const Footer: FunctionComponent<FooterProps> = props => {
 
   return (
     <footer className={styles.footer} {...rest}>
-      <p>Loan calculator 2021</p>
+      <p> © Loan calculator 2021</p>
     </footer>
   );
 };
