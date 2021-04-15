@@ -1,15 +1,19 @@
 import React, { FunctionComponent } from 'react';
 import Styles from './CallToAction.module.scss';
 
-interface OwnProps {}
+interface OwnProps {
+  header: any;
+  text: any;
+}
 
 type CallToActionProps = JSX.IntrinsicElements['div'] & OwnProps;
 
 const CallToAction: FunctionComponent<CallToActionProps> = props => {
+  const { header, text } = props;
   return (
     <div className={Styles.container}>
-      <h2>What loan reduction you can get?</h2>
-      <p>Put all your loans here:</p>
+      <h2>{header}</h2>
+      <p>{text}</p>
     </div>
   );
 };

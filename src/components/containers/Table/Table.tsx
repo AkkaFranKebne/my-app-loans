@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { numberWithCommas } from '../../../utils/globals';
 import Style from './Table.module.scss';
 
 interface OwnProps {
@@ -15,10 +16,6 @@ type TableProps = Omit<JSX.IntrinsicElements['table'], 'children'> & OwnProps;
 const Table: FunctionComponent<TableProps> = props => {
   const { data, total } = props;
   const { totalLoan, totalFee, totalApr } = total;
-
-  const numberWithCommas = (number: number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  };
 
   return (
     <table width="100%" className={Style.table}>

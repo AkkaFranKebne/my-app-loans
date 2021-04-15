@@ -16,9 +16,14 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
   console.log('totals', totals);
   const showLink = !Array.isArray(totals);
 
+  const callToActionData = {
+    header: 'What loan reduction you can get?',
+    text: 'Put all your loans here:',
+  };
+
   return (
     <Layout>
-      <CallToAction />
+      <CallToAction {...callToActionData} />
       <Form data={test} total={totals} />
       <Table data={test} total={totals} />
       {showLink && <Link href="/contact">See more</Link>}

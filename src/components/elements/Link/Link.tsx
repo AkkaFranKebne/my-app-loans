@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { NavLink } from 'react-router-dom';
+import Styles from './Link.module.scss';
 
 interface OwnProps {
   href: string;
@@ -8,10 +9,10 @@ interface OwnProps {
 type LinkProps = JSX.IntrinsicElements['a'] & OwnProps;
 
 const Link: FunctionComponent<LinkProps> = props => {
-  const { className, children, href } = props;
+  const { children, href } = props;
 
   return (
-    <NavLink to={href} activeClassName={className}>
+    <NavLink to={href} activeClassName={Styles.button}>
       {children}
     </NavLink>
   );
