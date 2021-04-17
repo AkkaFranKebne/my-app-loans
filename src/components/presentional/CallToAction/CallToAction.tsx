@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import Styles from './CallToAction.module.scss';
 
 interface OwnProps {
-  header: any;
-  text: any;
+  header: string;
+  text: string;
 }
 
 type CallToActionProps = JSX.IntrinsicElements['div'] & OwnProps;

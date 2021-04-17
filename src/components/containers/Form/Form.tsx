@@ -1,40 +1,40 @@
 import cx from 'clsx';
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { addTest, addTotals } from '../../../redux/actions';
 import Styles from './Form.module.scss';
+import { ITotals } from '../../../types/totals';
+import { ITestData, ITest } from '../../../types/test';
 
 interface OwnProps {
-  addTest: any;
-  addTotals: any;
-  data: any;
-  total: {
-    totalLoan: any;
-    totalFee: any;
-    totalApr: any;
-  };
+  addTest: (test: ITestData) => void;
+  addTotals: (totals: ITotals) => void;
+  data: ITestData;
+  total: ITotals;
 }
 
 type FormProps = JSX.IntrinsicElements['form'] & OwnProps;
 
-const defaultValueState = {
+const defaultValueState: ITest = {
   creditor: '',
   loan: 0,
   fee: 0,
   apr: 0,
 };
 
+const defaultErrorState: ITest | {} = {};
+
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(defaultErrorState);
 
   // to do - not working properly
   //Redux
   const { data, total } = props;
 
   //   // local copy of redux data
-  const fullData: any = Array.isArray(data) ? { data: [] } : data;
-  const fullTotal: any = Array.isArray(total) ? { totalLoan: 0, totalFee: 0, totalApr: 0 } : total;
+  const fullData: ITestData = Array.isArray(data) ? { data: [] } : data;
+  const fullTotal: ITotals = Array.isArray(total) ? { totalLoan: 0, totalFee: 0, totalApr: 0 } : total;
 
   //validation functions
   const textValidation = (fieldValue: string) => {
@@ -80,7 +80,7 @@ const Form: FunctionComponent<FormProps> = props => {
     apr: percentageValidation,
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value: newValue, type } = event.target;
 
     // keep number fields as numbers
@@ -93,8 +93,8 @@ const Form: FunctionComponent<FormProps> = props => {
     });
   };
 
-  const handleOnSubmit = (event: any) => {
-    event.preventDefault();
+  const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
+    // event.preventDefault();
 
     // validate the form
     const formValidation = Object.keys(values)
@@ -208,8 +208,8 @@ const Form: FunctionComponent<FormProps> = props => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    addTest: (test: any) => dispatch(addTest(test)),
-    addTotals: (totals: any) => dispatch(addTotals(totals)),
+    addTest: (test: ITestData) => dispatch(addTest(test)),
+    addTotals: (totals: ITotals) => dispatch(addTotals(totals)),
   };
 };
 

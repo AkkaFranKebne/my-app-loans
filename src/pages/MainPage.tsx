@@ -3,10 +3,12 @@ import { Link } from '../components/elements';
 import { CallToAction } from '../components/presentional';
 import { Form, Table, Layout } from '../components/containers';
 import { connect } from 'react-redux';
+import { ITotals } from '../types/totals';
+import { ITestData } from '../types/test';
 
 interface OwnProps {
-  test: any;
-  totals: any;
+  test: ITestData;
+  totals: ITotals;
 }
 
 type MainPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;

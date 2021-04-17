@@ -4,9 +4,10 @@ import { Link } from '../components/elements';
 import { Layout } from '../components/containers';
 import { CallToAction } from '../components/presentional';
 import { numberWithCommas } from '../utils/globals';
+import { ITotals } from '../types/totals';
 
 interface OwnProps {
-  totals: any;
+  totals: ITotals;
 }
 
 type ContactPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;

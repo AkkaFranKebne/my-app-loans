@@ -1,14 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { numberWithCommas } from '../../../utils/globals';
 import Style from './Table.module.scss';
+import { ITotals } from '../../../types/totals';
+import { ITestData, ITest } from '../../../types/test';
 
 interface OwnProps {
-  data: any;
-  total: {
-    totalLoan: any;
-    totalFee: any;
-    totalApr: any;
-  };
+  data: ITestData;
+  total: ITotals;
 }
 
 type TableProps = Omit<JSX.IntrinsicElements['table'], 'children'> & OwnProps;
@@ -30,7 +28,7 @@ const Table: FunctionComponent<TableProps> = props => {
         </thead>
       )}
       <tbody>
-        {data?.data?.map((item: any, index: number) => {
+        {data?.data?.map((item: ITest, index: number) => {
           return (
             <tr key={`table-row-${index}`}>
               <td>{item.creditor} </td>

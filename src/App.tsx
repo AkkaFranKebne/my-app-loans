@@ -18,7 +18,7 @@ const App: FunctionComponent<AppProps> = props => {
         <Header />
         <div>
           <Switch>
-            {routes.map((route: any, index: number) => (
+            {routes.map((route, index) => (
               <Route key={`page-static-routes-${index}`} exact={true} {...route} />
             ))}
           </Switch>
