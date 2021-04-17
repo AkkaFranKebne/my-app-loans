@@ -3,8 +3,10 @@ import React, { FunctionComponent, useState, ChangeEvent, FormEvent } from 'reac
 import { connect } from 'react-redux';
 import { addTest, addTotals } from '../../../redux/actions';
 import Styles from './Form.module.scss';
+import { IValidate, IErrorMessage } from '../../../types/validate';
 import { ITotals } from '../../../types/totals';
 import { ITestData, ITest } from '../../../types/test';
+import { IError, IErrorData } from '../../../types/error';
 
 type AddTest = (test: ITestData) => void;
 type AddTotals = (totals: ITotals) => void;
@@ -25,7 +27,14 @@ const defaultValueState: ITest = {
   apr: 0,
 };
 
-const defaultErrorState: ITest | {} = {};
+const defaultErrorState: IErrorData = {};
+
+const checkErrorType = (checkedError: IErrorData): checkedError is IError => {
+  if (checkedError as IError) {
+    return true;
+  }
+  return false;
+};
 
 const Form: FunctionComponent<FormProps> = props => {
   const [values, setValues] = useState(defaultValueState);
@@ -76,7 +85,7 @@ const Form: FunctionComponent<FormProps> = props => {
     return null;
   };
 
-  const validate = {
+  const validate: IValidate = {
     creditor: textValidation,
     loan: numberValidation,
     fee: numberValidation,
@@ -97,13 +106,14 @@ const Form: FunctionComponent<FormProps> = props => {
   };
 
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
+    event.preventDefault();
 
     // validate the form
     const formValidation = Object.keys(values)
-      .map(key => {
-        // @ts-ignore
-        const newError = validate[key](values[key]);
+      //@ts-ignore
+      .map((key: 'creditor' | 'loan' | 'fee' | 'apr' | '') => {
+        //@ts-ignore
+        const newError: IErrorMessage = validate[key](values[key]);
         return newError && { [key]: newError };
       })
       .filter(error => error !== null);
@@ -127,6 +137,7 @@ const Form: FunctionComponent<FormProps> = props => {
     } else {
       //show errors
       setErrors(
+        //@ts-ignore
         formValidation.reduce((acc, error) => {
           return {
             ...acc,
@@ -140,7 +151,10 @@ const Form: FunctionComponent<FormProps> = props => {
   return (
     <form onSubmit={handleOnSubmit} className={Styles.form} autoComplete="off">
       <div className={Styles.labelWrapper}>
-        <label htmlFor="creditor" className={cx({ [Styles.inputError]: errors.creditor })}>
+        <label
+          htmlFor="creditor"
+          className={checkErrorType(errors) ? cx({ [Styles.inputError]: errors.creditor }) : ''}
+        >
           Creditor:
           <input
             type="text"
@@ -155,12 +169,10 @@ const Form: FunctionComponent<FormProps> = props => {
             spellCheck={false}
           />
         </label>
-
-        {/* @ts-ignore */}
-        {errors.creditor && <span className={Styles.error}>{errors.creditor}</span>}
+        {checkErrorType(errors) && errors.creditor && <span className={Styles.error}>{errors.creditor}</span>}
       </div>
       <div className={Styles.labelWrapper}>
-        <label htmlFor="loan" className={cx({ [Styles.inputError]: errors.loan })}>
+        <label htmlFor="loan" className={checkErrorType(errors) ? cx({ [Styles.inputError]: errors.loan }) : ''}>
           Loan (SEK):
           <input
             type="number"
@@ -171,11 +183,10 @@ const Form: FunctionComponent<FormProps> = props => {
             onChange={event => handleChange(event)}
           />
         </label>
-        {/* @ts-ignore */}
-        {errors.loan && <span className={Styles.error}>{errors.loan}</span>}
+        {checkErrorType(errors) && errors.loan && <span className={Styles.error}>{errors.loan}</span>}
       </div>
       <div className={Styles.labelWrapper}>
-        <label htmlFor="fee" className={cx({ [Styles.inputError]: errors.fee })}>
+        <label htmlFor="fee" className={checkErrorType(errors) ? cx({ [Styles.inputError]: errors.fee }) : ''}>
           Fee (SEK):
           <input
             type="number"
@@ -186,11 +197,10 @@ const Form: FunctionComponent<FormProps> = props => {
             onChange={event => handleChange(event)}
           />
         </label>
-        {/* @ts-ignore */}
-        {errors.fee && <span className={Styles.error}>{errors.fee}</span>}
+        {checkErrorType(errors) && errors.fee && <span className={Styles.error}>{errors.fee}</span>}
       </div>
       <div className={Styles.labelWrapper}>
-        <label htmlFor="apr" className={cx({ [Styles.inputError]: errors.apr })}>
+        <label htmlFor="apr" className={checkErrorType(errors) ? cx({ [Styles.inputError]: errors.apr }) : ''}>
           APR (%):
           <input
             type="number"
@@ -201,8 +211,7 @@ const Form: FunctionComponent<FormProps> = props => {
             onChange={event => handleChange(event)}
           />
         </label>
-        {/* @ts-ignore */}
-        {errors.apr && <span className={Styles.error}>{errors.apr}</span>}
+        {checkErrorType(errors) && errors.apr && <span className={Styles.error}>{errors.apr}</span>}
       </div>
       <input type="submit" />
     </form>
