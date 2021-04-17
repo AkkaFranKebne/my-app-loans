@@ -6,9 +6,12 @@ import Styles from './Form.module.scss';
 import { ITotals } from '../../../types/totals';
 import { ITestData, ITest } from '../../../types/test';
 
+type AddTest = (test: ITestData) => void;
+type AddTotals = (totals: ITotals) => void;
+
 interface OwnProps {
-  addTest: (test: ITestData) => void;
-  addTotals: (totals: ITotals) => void;
+  addTest: AddTest;
+  addTotals: AddTotals;
   data: ITestData;
   total: ITotals;
 }
@@ -206,7 +209,9 @@ const Form: FunctionComponent<FormProps> = props => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (
+  dispatch: (any: { type: string; payload: ITestData } | { type: string; payload: ITotals }) => void,
+) => {
   return {
     addTest: (test: ITestData) => dispatch(addTest(test)),
     addTotals: (totals: ITotals) => dispatch(addTotals(totals)),

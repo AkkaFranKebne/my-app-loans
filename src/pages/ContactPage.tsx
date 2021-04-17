@@ -5,6 +5,7 @@ import { Layout } from '../components/containers';
 import { CallToAction } from '../components/presentional';
 import { numberWithCommas } from '../utils/globals';
 import { ITotals } from '../types/totals';
+import { IStateState } from '../redux/stateTypes';
 
 interface OwnProps {
   totals: ITotals;
@@ -28,7 +29,7 @@ const ContactPage: FunctionComponent<ContactPageProps> = props => {
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IStateState) => {
   return {
     totals: state.totals,
   };

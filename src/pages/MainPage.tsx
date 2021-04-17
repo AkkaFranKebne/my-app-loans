@@ -5,6 +5,7 @@ import { Form, Table, Layout } from '../components/containers';
 import { connect } from 'react-redux';
 import { ITotals } from '../types/totals';
 import { ITestData } from '../types/test';
+import { IStateState } from '../redux/stateTypes';
 
 interface OwnProps {
   test: ITestData;
@@ -15,7 +16,6 @@ type MainPageProps = Omit<JSX.IntrinsicElements['main'], 'children'> & OwnProps;
 
 const MainPage: FunctionComponent<MainPageProps> = props => {
   const { test, totals } = props;
-  console.log('totals', totals);
   const showLink = !Array.isArray(totals);
 
   const callToActionData = {
@@ -33,7 +33,7 @@ const MainPage: FunctionComponent<MainPageProps> = props => {
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IStateState) => {
   return {
     test: state.test,
     totals: state.totals,
