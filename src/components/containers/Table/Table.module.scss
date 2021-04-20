@@ -13,7 +13,7 @@
 
   th {
     @extend %row;
-    font-family: $font-header;
+    font-family: map-get($font, header);
     padding-top: 12px;
     padding-bottom: 12px;
   }

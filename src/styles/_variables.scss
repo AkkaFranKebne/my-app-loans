@@ -1,5 +1,7 @@
-$font-body: 'Roboto-Light';
-$font-header: 'Roboto-Bold';
+$font: (
+  body: 'Roboto-Light',
+  header: 'Roboto-Bold',
+);
 
 $color-white: #fff;
 $color-black: #000;

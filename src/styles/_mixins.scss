@@ -4,7 +4,7 @@
   padding: 1em;
   background-color: $backgroundColor;
   color: $color;
-  font-family: $font-header;
+  font-family: map-get($font, header);
   font-size: 2rem;
   margin-top: 1rem;
 
