@@ -107,11 +107,9 @@ const Form: FunctionComponent<FormProps> = props => {
 
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     // validate the form
     const formValidation = Object.keys(values)
-      //@ts-ignore
-      .map((key: 'creditor' | 'loan' | 'fee' | 'apr' | '') => {
+      .map((key: string) => {
         //@ts-ignore
         const newError: IErrorMessage = validate[key](values[key]);
         return newError && { [key]: newError };
