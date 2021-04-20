@@ -6,19 +6,20 @@
   width: 100%;
   border-radius: 0.5rem;
 
+  %row {
+    border: 1px solid $color-white;
+    padding: 8px;
+  }
+
   th {
+    @extend %row;
     font-family: $font-header;
     padding-top: 12px;
     padding-bottom: 12px;
   }
 
-  td,
-  th {
-    border: 1px solid $color-white;
-    padding: 8px;
-  }
-
   td {
+    @extend %row;
     text-align: right;
 
     &:first-of-type {
