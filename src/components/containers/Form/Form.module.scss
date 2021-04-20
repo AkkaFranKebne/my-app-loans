@@ -1,5 +1,6 @@
 @import '../../../styles/variables';
 @import '../../../styles/breakpoints';
+@import '../../../styles/mixins';
 
 .form {
   display: flex;
@@ -65,17 +66,7 @@
 
   input[type='submit'] {
     flex-basis: 100%;
-    text-transform: uppercase;
-    padding: 1em;
-    background-color: $color-green;
-    color: $color-white;
-    font-family: $font-header;
-    font-size: 2rem;
-    margin-top: 1rem;
-
-    &:hover {
-      background-color: $color-grey;
-    }
+    @include button($color-white, $color-green, $color-grey);
   }
 
   .error {

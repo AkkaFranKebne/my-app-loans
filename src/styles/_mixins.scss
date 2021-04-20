@@ -1,0 +1,14 @@
+//button
+@mixin button($color, $backgroundColor, $backgroundColorHover) {
+  text-transform: uppercase;
+  padding: 1em;
+  background-color: $backgroundColor;
+  color: $color;
+  font-family: $font-header;
+  font-size: 2rem;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: $backgroundColorHover;
+  }
+}
