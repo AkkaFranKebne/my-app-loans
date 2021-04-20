@@ -12,3 +12,9 @@
     background-color: $backgroundColorHover;
   }
 }
+
+//border radius
+
+@mixin borderRadius($size, $position) {
+  border#{$position}radius: $size;
+}

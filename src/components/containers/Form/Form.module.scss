@@ -25,7 +25,6 @@
     label {
       background-color: $color-beige;
       color: $color-grey;
-      border-radius: 0.5rem;
       margin-top: 2rem;
       padding: 0.5rem;
       font-size: 1.6rem;
@@ -42,7 +41,7 @@
     border: 0;
     outline: none;
     overflow: hidden;
-    border-radius: 0.5rem;
+    @include borderRadius($standard-border-radius, '-');
   }
 
   input[type='text'],
@@ -73,8 +72,8 @@
     background-color: $color-red;
     color: $color-white;
     padding: 1rem 0.5rem;
-    border-radius: 0.5rem;
     margin-top: 1rem;
+    @include borderRadius($standard-border-radius, '-');
 
     @include device-tablet {
       position: relative;
