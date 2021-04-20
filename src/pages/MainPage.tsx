@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from '../components/elements';
-import { CallToAction } from '../components/presentional';
-import { Form, Table, Layout } from '../components/containers';
+import { CallToAction, Layout } from '../components/presentional';
+import { Form, Table } from '../components/containers';
 import { connect } from 'react-redux';
 import { ITotals } from '../types/totals';
 import { ITestData } from '../types/test';

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Footer, Header } from './components/containers';
+import { Footer, Header } from './components/presentional';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { routes } from './routes';
 

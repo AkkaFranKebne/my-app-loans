@@ -7,5 +7,5 @@ export interface IStateState {
 }
 
 export interface IState {
-  state: IStateState | [];
+  state: IStateState;
 }

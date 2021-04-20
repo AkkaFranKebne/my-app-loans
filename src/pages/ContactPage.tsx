@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '../components/elements';
-import { Layout } from '../components/containers';
-import { CallToAction } from '../components/presentional';
+import { CallToAction, Layout } from '../components/presentional';
 import { numberWithCommas } from '../utils/globals';
 import { ITotals } from '../types/totals';
 import { IStateState } from '../redux/stateTypes';
